@@ -6,7 +6,7 @@ public class PrintArgumentLengths {
     }
 
     for (String arg: args) {
-
+        System.out.println("arg: " + arg + ", length: " + arg.length());
     }
   }
 }
