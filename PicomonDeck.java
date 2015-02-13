@@ -40,10 +40,18 @@ public class PicomonDeck {
 
     public void shuffle() {
         // Implement me!
+        // > create a new array  
     }
 
-    public boolean orderedEquals(PicomonDeck other) {
-        // Implement me!
+    public boolean orderedEquals(PicomonDeck other) {       
+        if (this.cards.length != other.cards.length) {
+            return false;
+        }
+        for (int i = 0; i < this.cards.length; i++) {
+            if (!this.cards[i].equals(other.cards[i])) {
+                return false;
+            }
+        }
         return true;
     }
 
