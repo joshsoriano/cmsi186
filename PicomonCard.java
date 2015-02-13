@@ -39,8 +39,51 @@ public class PicomonCard {
 
     public boolean beats(PicomonCard opponent) {
         // Implement me!
-        return false;
-    }
+        if (this.element == opponent.element) {
+            return (this.power > opponent.power);
+        }
+
+        if (this.element == PicomonElement.AIR && opponent.element == PicomonElement.FIRE) {
+            return (this.power > (opponent.power * 3));
+        }
+
+        if (this.element == PicomonElement.AIR && (opponent.element == PicomonElement.WATER || opponent.element == PicomonElement.EARTH)) {
+            return ((this.power * 2) > opponent.power); 
+        }
+
+        if (this.element == PicomonElement.WATER && (opponent.element == PicomonElement.FIRE || opponent.element == PicomonElement.EARTH)) {
+            return ((this.power * 2) > opponent.power);
+        }
+
+        if (this.element == PicomonElement.WATER && opponent.element == PicomonElement.AIR) {
+            return (this.power > (opponent.power * 2));
+        }
+
+        if (this.element == PicomonElement.FIRE && opponent.element == PicomonElement.EARTH) {
+            return (this.power > (opponent.power * 4));
+        }
+
+        if (this.element == PicomonElement.FIRE && opponent.element == PicomonElement.WATER) {
+            return (this.power > (opponent.power * 2));
+        }
+
+        if (this.element == PicomonElement.FIRE && opponent.element == PicomonElement.AIR) {
+            return ((this.power * 3) > opponent.power);
+        }
+
+        if (this.element == PicomonElement.EARTH && opponent.element == PicomonElement.FIRE) {
+            return ((this.power * 4) > opponent.power);
+        }
+
+        if (this.element == PicomonElement.EARTH && (opponent.element == PicomonElement.WATER || opponent.element == PicomonElement.AIR)) {
+            return (this.power > (opponent.power * 2));
+        }
+
+        else {
+            return false;
+        }
+}
+
 
     @Override
     public String toString() {
