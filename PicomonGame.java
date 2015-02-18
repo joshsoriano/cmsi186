@@ -71,10 +71,10 @@ public class PicomonGame {
     }
     
     public Player getLeader() {
-        if (gymLeaderPosition > trainerPosition) {
+        if (gymLeaderPosition < trainerPosition) {
         	return Player.GYM_LEADER;
         }
-        if (trainerPosition > gymLeaderPosition) {
+        if (trainerPosition < gymLeaderPosition) {
         	return Player.TRAINER;
         } else {
         	return null;
@@ -82,13 +82,24 @@ public class PicomonGame {
     }
     
     public Round playRound() {
+    	Round result = new Round(gymLeaderDeck.cardAt(gymLeaderPosition), trainerDeck.cardAt(trainerPosition));
         
-        return null;
+        if (gymLeaderDeck.cardAt(gymLeaderPosition).beats(trainerDeck.cardAt(trainerPosition))) {
+        	result.winner = Player.GYM_LEADER;
+        	trainerPosition++;
+        } else if (trainerDeck.cardAt(trainerPosition).beats(gymLeaderDeck.cardAt(gymLeaderPosition))) {
+        	result.winner = Player.TRAINER;
+        	gymLeaderPosition++;
+        } else {
+        	gymLeaderPosition++;
+        	trainerPosition++;
+        	result.winner = null;
+        }
+        return result;
     }
 
     public Round[] playMatch() {
-        // Implement me!
-        return new Round[0];
+    	return new Round[0];
     }
 
     public static void main(String[] args) {
