@@ -42,7 +42,7 @@ public class PicomonDeck {
         PicomonCard[] results = new PicomonCard[cards.length];
         System.arraycopy(cards, 0, results, 0, cards.length);
 
-        for (int i = 0, topHalf = 0, bottomHalf = Math.round(cards.length / 2); i < results.length; i++) {
+        for (int i = 0, topHalf = 0, bottomHalf = Math.round(cards.length / 2); i < cards.length; i++) {
         	if (i % 2 == 0) {
         		cards[i] = results[bottomHalf];
         		bottomHalf++;
