@@ -39,9 +39,19 @@ public class PicomonDeck {
     }
 
     public void shuffle() {
-        // Implement me!
-        // > create a new array  
-    }
+        PicomonCard[] results = new PicomonCard[cards.length];
+        System.arraycopy(cards, 0, results, 0, cards.length);
+
+        for (int i = 0, topHalf = 0, bottomHalf = Math.round(cards.length / 2); i < results.length; i++) {
+        	if (i % 2 == 0) {
+        		cards[i] = results[bottomHalf];
+        		bottomHalf++;
+        	} else {
+        		cards[i] = results[topHalf];
+        		topHalf++;
+        	}
+        }
+    } 
 
     public boolean orderedEquals(PicomonDeck other) {       
         if (this.cards.length != other.cards.length) {
