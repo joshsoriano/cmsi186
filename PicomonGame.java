@@ -67,17 +67,22 @@ public class PicomonGame {
     }
 
     public boolean isMatchOver() {
-        // Implement me!
-        return true;
+    	return gymLeaderPosition == gymLeaderDeck.getSize() || trainerPosition == trainerDeck.getSize();
     }
     
     public Player getLeader() {
-        // Implement me!
-        return Player.TRAINER;
+        if (gymLeaderPosition > trainerPosition) {
+        	return Player.GYM_LEADER;
+        }
+        if (trainerPosition > gymLeaderPosition) {
+        	return Player.TRAINER;
+        } else {
+        	return null;
+        }
     }
     
     public Round playRound() {
-        // Implement me!
+        
         return null;
     }
 
