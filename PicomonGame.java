@@ -125,15 +125,6 @@ public class PicomonGame {
             gymLeaderDeck = new PicomonDeck();
             trainerDeck = new PicomonDeck();
             game = new PicomonGame(gymLeaderDeck, trainerDeck);
-            System.out.println("Gym leader's Deck: " + gymLeaderDeck);
-            System.out.println("Trainer's Deck: " + trainerDeck);
-            Round[] playByPlay = game.playMatch();
-                for (int i = 0; i < playByPlay.length; i++) {
-                    if (playByPlay[i] != null) {
-                        System.out.println(playByPlay[i]);
-                    }
-                }
-            System.out.println("And the winner is: " + game.getLeader() + "!");
 
         } else {
             cards = new PicomonCard[args.length/2];
@@ -146,15 +137,17 @@ public class PicomonGame {
             if (gymLeaderDeck.orderedEquals(trainerDeck)) {
                 gymLeaderDeck.shuffle();
             }
-            System.out.println("Gym leader's Deck: " + gymLeaderDeck);
-            System.out.println("Trainer's Deck: " + trainerDeck);
-            Round[] playByPlay = game.playMatch();
-                for (int i = 0; i < playByPlay.length; i++) {
-                    if (playByPlay[i] != null) {
-                        System.out.println(playByPlay[i]);
-                    }
-                }
-            System.out.println("And the winner is: " + game.getLeader() + "!");
         }
+
+        System.out.println("Gym leader's Deck: " + gymLeaderDeck);
+        System.out.println("Trainer's Deck: " + trainerDeck);
+        Round[] playByPlay = game.playMatch();
+            for (int i = 0; i < playByPlay.length; i++) {
+                if (playByPlay[i] != null) {
+                    System.out.println(playByPlay[i]);
+                }
+            }
+        System.out.println("And the winner is: " + game.getLeader() + "!");
+
     }
 }
