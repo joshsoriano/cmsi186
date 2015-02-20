@@ -111,7 +111,50 @@ public class PicomonGame {
     }
 
     public static void main(String[] args) {
-        // Implement me!
-    }
+        PicomonGame game;
+        PicomonDeck gymLeaderDeck;
+        PicomonDeck trainerDeck;
+        PicomonCard[] cards;
 
+        if (args.length % 2 != 0) {
+            System.out.println("Cannot create a deck based on the supplied arguments.");
+            return;
+        }
+
+    	if (args.length == 0) {
+            gymLeaderDeck = new PicomonDeck();
+            trainerDeck = new PicomonDeck();
+            game = new PicomonGame(gymLeaderDeck, trainerDeck);
+            System.out.println("Gym leader's Deck: " + gymLeaderDeck);
+            System.out.println("Trainer's Deck: " + trainerDeck);
+            Round[] playByPlay = game.playMatch();
+                for (int i = 0; i < playByPlay.length; i++) {
+                    if (playByPlay[i] != null) {
+                        System.out.println(playByPlay[i]);
+                    }
+                }
+            System.out.println("And the winner is: " + game.getLeader() + "!");
+
+        } else {
+            cards = new PicomonCard[args.length/2];
+            for(int i = 0; i < args.length / 2; i++) {
+                cards[i] = new PicomonCard(PicomonElement.valueOf(args[i * 2].toUpperCase()), Integer.parseInt(args[i * 2 + 1]));
+            }
+            gymLeaderDeck = new PicomonDeck(cards);
+            trainerDeck = new PicomonDeck(cards);
+            game = new PicomonGame(gymLeaderDeck, trainerDeck);
+            if (gymLeaderDeck.orderedEquals(trainerDeck)) {
+                gymLeaderDeck.shuffle();
+            }
+            System.out.println("Gym leader's Deck: " + gymLeaderDeck);
+            System.out.println("Trainer's Deck: " + trainerDeck);
+            Round[] playByPlay = game.playMatch();
+                for (int i = 0; i < playByPlay.length; i++) {
+                    if (playByPlay[i] != null) {
+                        System.out.println(playByPlay[i]);
+                    }
+                }
+            System.out.println("And the winner is: " + game.getLeader() + "!");
+        }
+    }
 }
