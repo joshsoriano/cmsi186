@@ -39,19 +39,17 @@ public class PicomonDeck {
     }
 
     public void shuffle() {
-        PicomonCard[] results = new PicomonCard[cards.length];
-        System.arraycopy(cards, 0, results, 0, cards.length);
-
-        for (int i = 0, topHalf = 0, bottomHalf = Math.round(cards.length / 2); i < cards.length; i++) {
-        	if (i % 2 == 0) {
-        		cards[i] = results[bottomHalf];
-        		bottomHalf++;
-        	} else {
-        		cards[i] = results[topHalf];
-        		topHalf++;
-        	}
+        PicomonCard[] results = new PicomonCard[this.getSize()];
+        
+        for (int i = 0; i < this.getSize(); i++) {
+            if (i % 2 == 0) {
+                results[i] = cards[(this.getSize() / 2) + (i / 2)];
+            } else {   
+                results[i] = cards[(i - 1) / 2];
+            }
         }
-    } 
+        cards = results;
+    }
 
     public boolean orderedEquals(PicomonDeck other) {       
         if (this.cards.length != other.cards.length) {
