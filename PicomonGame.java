@@ -99,7 +99,15 @@ public class PicomonGame {
     }
 
     public Round[] playMatch() {
-    	return new Round[0];
+    	Round[] rounds = new Round[trainerDeck.getSize() + gymLeaderDeck.getSize()];
+    	int counter = 0;
+
+    	while (!isMatchOver()) {
+    		rounds[counter] = playRound();
+    		counter++;
+    	}
+
+    	return rounds;
     }
 
     public static void main(String[] args) {
