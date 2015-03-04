@@ -7,7 +7,7 @@ public class AngryBallsTestHarness {
         attempts = 0;
         successes = 0;
 
-        /*test_VectorCreation();*/
+        test_VectorCreation();
 
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
@@ -23,4 +23,49 @@ public class AngryBallsTestHarness {
         displaySuccessIfTrue(false);
     }
 
+    public static void test_VectorCreation() {
+        System.out.println("Testing Vector Constructors...");
+
+        Vector a = new Vector(5, 8);
+        Vector b = new Vector(10, 12);
+
+        try {
+            displaySuccessIfTrue(a.x() == 5);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(a.y() == 8);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(b.x() == 10);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(b.y() == 12);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(a.add(b).x() == 15);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        a = new Vector(5, 8);
+        b = new Vector(10, 12);
+
+        try {
+            displaySuccessIfTrue(a.add(b).y() == 20);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+    }
 }
