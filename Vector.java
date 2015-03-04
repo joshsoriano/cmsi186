@@ -26,7 +26,7 @@ public class Vector {
 
     public Vector scale(double magnitude) {
         this.x = (this.x * magnitude);
-        this.y = (this.y + magnitude);
+        this.y = (this.y * magnitude);
         Vector scaledVector = new Vector(this.x, this.y);
         return scaledVector;
         /* Find way to add without creating a new vector */
