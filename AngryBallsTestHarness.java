@@ -139,5 +139,18 @@ public class AngryBallsTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
+
+        try {
+            displaySuccessIfTrue(a.getLocation().x() == 1.0);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(a.getLocation().y() == 0);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
     }
 }
