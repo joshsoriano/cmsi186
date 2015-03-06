@@ -10,6 +10,10 @@ public class Ball {
         this.initialVelocity = initialVelocity;
     }
 
+    public Vector getInitialVelocity() {
+        return initialVelocity;
+    }
+
     public Vector getLocation() {
         return this.location;
     }
@@ -19,11 +23,11 @@ public class Ball {
     }
     
     public void accelerate(Vector acceleration, double grain) {
-        // Implement me!
+        initialVelocity.add(acceleration.scale(grain)); 
     }
 
     public void move(double grain) {
-        // Implement me!
+        this.location = this.location.add(initialVelocity.scale(grain));
     }
 
 }
