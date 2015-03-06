@@ -96,7 +96,7 @@ public class AngryBallsTestHarness {
 
         /* Scale() Testing */
 
-        a = new Vector(5, 8);
+        a = new Vector(5, 5);
 
         try {
             displaySuccessIfTrue(a.scale(2).x() == 10);
@@ -104,10 +104,10 @@ public class AngryBallsTestHarness {
             displaySuccessIfTrue(false);
         }
 
-        a = new Vector(5, 8);
-
+        a = new Vector(5, 5);
+        
         try {
-            displaySuccessIfTrue(a.scale(2).y() == 16);
+            displaySuccessIfTrue(a.scale(2).y() == 10);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
@@ -132,25 +132,45 @@ public class AngryBallsTestHarness {
     public static void test_BallCreation() {
         System.out.println("Testing Ball Constructors...");
 
-        Ball a = new Ball(5.0, new Vector(1.0, 0), new Vector(50.0, 20.0));
+        Ball c = new Ball(5.0, new Vector(0.0, 1.0), new Vector(5.0, 5.0)) ;
+
+        /* getRadius() Test */
 
         try {
-            displaySuccessIfTrue(a.getRadius() == 5);
+            displaySuccessIfTrue(c.getRadius() == 5.0);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        /* getLocation() Test */
+
+        try {
+            displaySuccessIfTrue(c.getLocation().x() == 0.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
         try {
-            displaySuccessIfTrue(a.getLocation().x() == 1.0);
+            displaySuccessIfTrue(c.getLocation().y() == 1.0);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        c.move(1);
+
+        try {
+            displaySuccessIfTrue(c.getLocation().x() == 5.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
         try {
-            displaySuccessIfTrue(a.getLocation().y() == 0);
+            displaySuccessIfTrue(c.getLocation().y() == 6.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
+
+
 
     }
 }
