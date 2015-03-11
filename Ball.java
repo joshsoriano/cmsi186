@@ -15,19 +15,19 @@ public class Ball {
     }
 
     public Vector getLocation() {
-        return this.location;
+        return location;
     }
 
     public double getRadius() {
-        return this.radius;
+        return radius;
     }
     
     public void accelerate(Vector acceleration, double grain) {
-        initialVelocity.add(acceleration.scale(grain)); 
+        this.initialVelocity.add(acceleration.scale(grain)); 
     }
 
     public void move(double grain) {
-        this.location = this.location.add(initialVelocity.scale(grain));
+        this.location.add(initialVelocity.scale(grain));
     }
 
 }
