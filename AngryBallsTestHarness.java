@@ -8,7 +8,10 @@ public class AngryBallsTestHarness {
         successes = 0;
 
         test_VectorCreation();
+        test_Scale();
         test_BallCreation();
+        test_Move();
+
 
         System.out.println(successes + "/" + attempts + " tests passed.");
     }
@@ -27,122 +30,112 @@ public class AngryBallsTestHarness {
     public static void test_VectorCreation() {
         System.out.println("Testing Vector Constructors...");
 
-        /* x() and y() Testing */
-
-        Vector a = new Vector(5, 8);
-        Vector b = new Vector(10, 12);
+        Vector a = new Vector(5.0, 8.0);
+        Vector b = new Vector(10.0, 12.0);
 
         try {
-            displaySuccessIfTrue(a.x() == 5);
+            displaySuccessIfTrue(a.x() == 5.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
         try {
-            displaySuccessIfTrue(a.y() == 8);
+            displaySuccessIfTrue(a.y() == 8.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
         try {
-            displaySuccessIfTrue(b.x() == 10);
+            displaySuccessIfTrue(b.x() == 10.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
         try {
-            displaySuccessIfTrue(b.y() == 12);
+            displaySuccessIfTrue(b.y() == 12.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
-        /* Add() Testing */
-
-        a = new Vector(5, 8);
-        b = new Vector(10, 12);
+        a = new Vector(5.0, 8.0);
+        b = new Vector(10.0, 12.0);
 
         try {
-            displaySuccessIfTrue(a.add(b).x() == 15);
+            displaySuccessIfTrue(a.add(b).x() == 15.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
-        a = new Vector(5, 8);
-        b = new Vector(10, 12);
+        a = new Vector(5.0, 8.0);
+        b = new Vector(10.0, 12.0);
 
         try {
-            displaySuccessIfTrue(a.add(b).y() == 20);
+            displaySuccessIfTrue(a.add(b).y() == 20.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
-        a = new Vector(5, 8);
-        b = new Vector(10, 12);
+        a = new Vector(6.5, 2.5);
+        b = new Vector(12.5, 13.5);
 
         try {
-            displaySuccessIfTrue(b.add(a).x() == 15);
+            displaySuccessIfTrue(b.add(a).x() == 19.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
-        a = new Vector(5, 8);
-        b = new Vector(10, 12);
-
         try {
-            displaySuccessIfTrue(b.add(a).y() == 20);
+            displaySuccessIfTrue(b.y() == 16.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
-        /* Scale() Testing */
-
-        a = new Vector(5, 5);
+        a = new Vector(0.0, 0.0);
+        b = new Vector(0.0, -9.8);
 
         try {
-            displaySuccessIfTrue(a.scale(2).x() == 10);
+            displaySuccessIfTrue(b.add(a).x() == 0.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
-        a = new Vector(5, 5);
-        
         try {
-            displaySuccessIfTrue(a.scale(2).y() == 10);
+            displaySuccessIfTrue(b.y() == -9.8);
+        } catch(Exception e) {
+            displaySuccessIfTrue(false);
+        }
+    }
+
+    public static void test_Scale() {
+        System.out.println("Testing scale method...");
+
+        Vector v = new Vector(2.0, 3.0);
+
+        try {
+            displaySuccessIfTrue(v.scale(2).x() == 4.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
 
-        b = new Vector(10, 12);
+        v = new Vector (2.0, 3.0);
 
         try {
-            displaySuccessIfTrue(b.scale(2).x() == 20);
-        } catch(Exception e) {
-            displaySuccessIfTrue(false);
-        }
-
-        b = new Vector(10, 12);
-
-        try {
-            displaySuccessIfTrue(b.scale(2).y() == 24);
+            displaySuccessIfTrue(v.scale(2).y() == 6.0);
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
     }
 
     public static void test_BallCreation() {
-        System.out.println("Testing Ball Constructors...");
+        System.out.println("Testing Ball Constructor, getRadius, and getLocation...");
 
-        Ball c = new Ball(5.0, new Vector(0.0, 1.0), new Vector(5.0, 5.0)) ;
-
-        /* getRadius() Test */
+        Ball c = new Ball(5.0, new Vector(0.0, 1.0), new Vector(5.0, 5.0));
 
         try {
             displaySuccessIfTrue(c.getRadius() == 5.0);
         } catch(Exception e) {
-            displaySuccessIfTrue(false);
+            displaySuccessIfTrue(false); 
         }
-
-        /* getLocation() Test */
 
         try {
             displaySuccessIfTrue(c.getLocation().x() == 0.0);
@@ -155,22 +148,29 @@ public class AngryBallsTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
+    }
 
-        c.move(1);
+    public static void test_Move() {
+        System.out.println("Testing move method...");
+
+        Vector location = new Vector(0.0, 0.0);
+        Vector initialVelocity = new Vector (20.0, 30.0);
+        Vector acceleration = new Vector (0.0, -9.8);
+        Ball c = new Ball(5.0, location, initialVelocity);
+
+        c.accelerate(acceleration, 1.0);
+        c.move(1.0);
 
         try {
-            displaySuccessIfTrue(c.getLocation().x() == 5.0);
+            displaySuccessIfTrue(c.getLocation().x() == 20.0);
         } catch(Exception e) {
-            displaySuccessIfTrue(false);
+            displaySuccessIfTrue(false); 
         }
 
         try {
-            displaySuccessIfTrue(c.getLocation().y() == 6.0);
+            displaySuccessIfTrue(c.getLocation().y() == 20.2);
         } catch(Exception e) {
-            displaySuccessIfTrue(false);
+            displaySuccessIfTrue(false); 
         }
-
-
-
     }
 }
