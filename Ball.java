@@ -10,12 +10,12 @@ public class Ball {
         this.initialVelocity = initialVelocity;
     }
 
-    public Vector getInitialVelocity() {
-        return initialVelocity;
-    }
-
     public Vector getLocation() {
         return location;
+    }
+
+    public Vector getInitialVelocity() {
+        return initialVelocity;
     }
 
     public double getRadius() {
@@ -29,5 +29,4 @@ public class Ball {
     public void move(double grain) {
         this.location.add(initialVelocity.scale(grain));
     }
-
 }
