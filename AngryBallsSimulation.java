@@ -31,5 +31,24 @@ public class AngryBallsSimulation {
             System.out.println("All sizes are in meters and the grain is in the grain is optional and defaults to 1 second if not supplied.");
             return;
         }
+
+        Double redBallRadius = input[0];
+        Vector redBallLocation = new Vector(input[1], input[2]);
+        Vector redBallInitialVelocity = new Vector(input[3], input[4]);
+        Ball redBall = new Ball(redBallRadius, redBallLocation, redBallInitialVelocity);
+
+        Double blueBallRadius = input[5];
+        Vector blueBallLocation = new Vector(input[6], input[7]);
+        Vector blueBallInitialVelocity = new Vector(input[8], input[9]);
+        Ball blueBall = new Ball(blueBallRadius, blueBallLocation, blueBallInitialVelocity);
+
+        Double grain = input[10];
+        Vector acceleration = new Vector(0, -9.8);
+
+        while (redBall.getLocation().y() > 0) {
+            redBall.move(grain);
+            redBall.accelerate(acceleration, grain);
+            redBall.move(grain);
+        }
     }
 }
