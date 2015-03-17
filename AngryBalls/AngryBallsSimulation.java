@@ -51,7 +51,7 @@ public class AngryBallsSimulation {
         Vector blueBallTimeStamp = new Vector(0, 0);
 
         while ((redBall.getLocation().y() > 0) || (blueBall.getLocation().y() > 0)) {
-            System.out.println(redBall.getRadius() + " " + (Math.round(redBall.getLocation().x() * 10) / 10) + " " + (Math.round(redBall.getLocation().y() * 10) / 10) + " " + blueBall.getRadius() + " " + (Math.round(blueBall.getLocation().x() * 10) / 10) + " " + (Math.round(blueBall.getLocation().y() * 10) / 10));
+            System.out.println(redBall.getRadius() + " " + (redBall.getLocation().x()) + " " + (redBall.getLocation().y()) + " " + blueBall.getRadius() + " " + (blueBall.getLocation().x()) + " " + (blueBall.getLocation().y()));
             if (redBall.collides(blueBall) && numberOfCollides == 0) {
                 redBallTimeStamp.x = redBall.getLocation().x();
                 redBallTimeStamp.y = redBall.getLocation().y();
@@ -62,13 +62,13 @@ public class AngryBallsSimulation {
             }
             
             if (redBall.getLocation().y() > 0) {
-                redBall.accelerate(acceleration, grain);
                 redBall.move(grain);
+                redBall.accelerate(acceleration, grain);
             }
 
             if (blueBall.getLocation().y() > 0) {
-                blueBall.accelerate(acceleration, grain);
                 blueBall.move(grain);
+                blueBall.accelerate(acceleration, grain);
             }
             time += grain;
         }
