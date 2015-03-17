@@ -29,4 +29,8 @@ public class Ball {
     public void move(double grain) {
         this.location.add(initialVelocity.scale(grain));
     }
+
+    public boolean collides(Ball ball) {
+        return ((Math.abs(this.getLocation().x() - ball.getLocation().x())) + (Math.abs(this.getLocation().y() - ball.getLocation().y()))) <= (this.getRadius() + ball.getRadius());
+    }
 }
