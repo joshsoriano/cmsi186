@@ -32,18 +32,19 @@ public class AngryBallsSimulation {
             return;
         }
 
-        Double redBallRadius = input[0];
+        double redBallRadius = input[0];
         Vector redBallLocation = new Vector(input[1], input[2]);
         Vector redBallInitialVelocity = new Vector(input[3], input[4]);
         Ball redBall = new Ball(redBallRadius, redBallLocation, redBallInitialVelocity);
 
-        Double blueBallRadius = input[5];
+        double blueBallRadius = input[5];
         Vector blueBallLocation = new Vector(input[6], input[7]);
         Vector blueBallInitialVelocity = new Vector(input[8], input[9]);
         Ball blueBall = new Ball(blueBallRadius, blueBallLocation, blueBallInitialVelocity);
         
-        Double grain = input[10];
+        double grain = input[10];
         Vector acceleration = new Vector(0, -9.8);
+
         double numberOfCollides = 0;
         double timeStamp = -1;
         double time = 0;
@@ -52,6 +53,7 @@ public class AngryBallsSimulation {
 
         while ((redBall.getLocation().y() > 0) || (blueBall.getLocation().y() > 0)) {
             System.out.println(redBall.getRadius() + " " + (redBall.getLocation().x()) + " " + (redBall.getLocation().y()) + " " + blueBall.getRadius() + " " + (blueBall.getLocation().x()) + " " + (blueBall.getLocation().y()));
+            
             if (redBall.collides(blueBall) && numberOfCollides == 0) {
                 redBallTimeStamp.x = redBall.getLocation().x();
                 redBallTimeStamp.y = redBall.getLocation().y();
