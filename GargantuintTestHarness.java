@@ -11,10 +11,10 @@ public class GargantuintTestHarness {
         test_Constructor();
         test_toString();
         test_Equals();
+        test_isGreaterThan();
         test_Addition();
         
         // You should implement:
-        //   test_isGreaterThan
         //   test_isLessThan
         //   test_Subtraction
         //   test_Multiplication
@@ -151,6 +151,110 @@ public class GargantuintTestHarness {
             displaySuccessIfTrue(false);
         }
 
+    }
+
+    private static void test_isGreaterThan() {
+        System.out.println("Testing isGreaterThan...");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-100").isGreaterThan(new Gargantuint("100")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("5001").isGreaterThan(new Gargantuint("28")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("333").isGreaterThan(new Gargantuint("12121")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-77").isGreaterThan(new Gargantuint("-5666")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("-89999").isGreaterThan(new Gargantuint("-20")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("209").isGreaterThan(new Gargantuint("209")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("-40").isGreaterThan(new Gargantuint("-40")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("0").isGreaterThan(new Gargantuint("0")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("9877").isGreaterThan(new Gargantuint("9077")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("500574857392211333231233444319")
+                    .isGreaterThan(new Gargantuint("500574857392211333231233444318")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("63454253454325209989811891895619")
+                    .isGreaterThan(new Gargantuint("63454253454325209989811891895620")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("-999877621003213202019293035971")
+                    .isGreaterThan(new Gargantuint("-999877621003213202019293035970")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-4554311120219383900484583214012334")
+                    .isGreaterThan(new Gargantuint("-4554311120219383900484583214012335")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("-50").isGreaterThan(new Gargantuint("11")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("0").isGreaterThan(new Gargantuint("-1")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        try {
+            displaySuccessIfTrue(!new Gargantuint("0").isGreaterThan(new Gargantuint("1")));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
     }
 
     private static void test_Addition() {
