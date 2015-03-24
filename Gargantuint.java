@@ -2,14 +2,13 @@ public class Gargantuint {
 
     private byte[] digits;
     private boolean isNegative;
-    public String number;
 
     public Gargantuint() {
         this ("0");
     }
 
     public String dropZeros(String number) {
-        if (number.startsWith("0") && number.length() != 1) {
+        while (number.startsWith("0") && number.length() != 1) {
             number = number.substring(1);
         }
         return number;
@@ -21,7 +20,9 @@ public class Gargantuint {
         if (number.charAt(0) == '-') {
             number = number.substring(1);
             isNegative = true;
-        } else if (number.charAt(0) == '+') {
+        }
+
+        if (number.charAt(0) == '+') {
             number = number.substring(1);
             isNegative = false;
         }
@@ -34,13 +35,23 @@ public class Gargantuint {
     }
 
     public String toString() {
-        return "";
+        String string = "";
+        for(int i = digits.length -1; i >= 0; i--) {
+            string += digits[i];
+        }
+
+        if(isNegative) {
+            string = '-' + string;
+        } else if (!isNegative && (digits.length != 1 || digits[0] != 0)) {
+            string = '+' + string;
+        }
+        return string;
+        
     }
 
 
     public Boolean equals(Gargantuint number) {
-        return false;
-
+        return (this.toString().equals(number.toString()));
     }
 
     public Boolean isGreaterThan(Gargantuint number) {
