@@ -1,16 +1,40 @@
 public class Gargantuint {
-/*
-    private byte[] number;
 
-    public gargantuint() {
-        return 0;
+    private byte[] digits;
+    private boolean isNegative;
+    public String number;
+
+    public Gargantuint() {
+        this ("0");
     }
 
-    public gargantuint(String number) {
+    public String dropZeros(String number) {
+        if (number.startsWith("0") && number.length() != 1) {
+            number = number.substring(1);
+        }
+        return number;
+    }
+
+    public Gargantuint(String number) {
+        number = number.trim();
+
+        if (number.charAt(0) == '-') {
+            number = number.substring(1);
+            isNegative = true;
+        } else if (number.charAt(0) == '+') {
+            number = number.substring(1);
+            isNegative = false;
+        }
+        number = dropZeros(number);
+
+        digits = new byte[number.length()];
+        for (int i = 0; i < digits.length; i++) {
+            digits[digits.length - i - 1] = Byte.parseByte(number.substring(i, i + 1));
+        }
     }
 
     public String toString() {
-        return;
+        return "";
     }
 
 
@@ -30,30 +54,29 @@ public class Gargantuint {
     }
 
     public Gargantuint minus(Gargantuint subtrahend) {
-        return;
-
+        Gargantuint result = new Gargantuint("1");
+        return result;
     }
 
     public Gargantuint plus(Gargantuint addend) {
-        return;
-
+        Gargantuint result = new Gargantuint("1");
+        return result;
     }
 
     public Gargantuint mod(Gargantuint divisor) {
-        return;
-
+        Gargantuint result = new Gargantuint("1");
+        return result;
     }
 
     public Gargantuint times(Gargantuint factor) {
-        return;
-
+        Gargantuint result = new Gargantuint("1");
+        return result;
     }
 
     public Gargantuint div(Gargantuint divisor) {
-        return;
-
+        Gargantuint result = new Gargantuint("1");
+        return result;
     }
-*/
 }
 
 
