@@ -50,13 +50,24 @@ public class Gargantuint {
     }
 
 
-    public Boolean equals(Gargantuint number) {
-        return (this.toString().equals(number.toString()));
+    public Boolean equals(Gargantuint other) {
+        return (this.toString().equals(other.toString()));
     }
 
-    public Boolean isGreaterThan(Gargantuint number) {
-        return false;
-
+    public Boolean isGreaterThan(Gargantuint other) {
+        if (!this.isNegative && other.isNegative) {
+            return true;
+        } else if (this.isNegative && !other.isNegative) {
+            return false;
+        } else if ((this.isNegative && other.isNegative) && (this.digits.length > other.digits.length)) {
+            return true;
+        } else if ((this.isNegative && other.isNegative) && (this.digits.length < other.digits.length)) {
+            return false;
+        } else if ((this.isNegative && other.isNegative) && (this.digits.length == other.digits.length)) {
+            return false;
+        } else {
+            return false;
+        }
     }
 
     public Boolean isLessThan(Gargantuint number) {
