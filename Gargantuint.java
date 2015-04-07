@@ -192,8 +192,37 @@ public class Gargantuint {
     }
 
     public Gargantuint plus(Gargantuint addend) {
-        Gargantuint result = new Gargantuint("1");
-        return result;
+        if (this.isNegative && !addend.isNegative) {
+            Gargantuint abs = new Gargantuint(this.toString().substring(1));
+            if (abs.isGreaterThan(addend)) {
+                String result = "-" + addend.minus(abs).toString().substring(1);
+                return new Gargantuint(result);
+            } else {
+                return addend.minus(abs);
+            }
+        } else if (!this.isNegative && addend.isNegative) {
+            Gargantuint abs = new Gargantuint(addend.toString().substring(1));
+            if (abs.isGreaterThan(this)) {
+                String result = "-" + abs.minus(this).toString().substring(1);
+                return new Gargantuint(result);
+            } else {
+                return this.minus(abs);
+            }
+        }
+
+        String result = "";
+        if (this.isGreaterThan(addend)) {
+            result = arrayToString(addByteArray(this.digits, addend.digits));
+        } else {
+            result = arrayToString(addByteArray(addend.digits, this.digits));
+        }
+
+        if (isNegative) {
+            result = "-" + result;
+        }
+
+        return new Gargantuint(result);
+
     }
 
 
