@@ -41,7 +41,7 @@ public class Gargantuint {
         } else if (!isNegative && (digits.length != 1 || digits[0] != 0)) {
             string = '+' + string;
         }
-        return string;        
+        return string;
     }
 
     public boolean isNegative() {
@@ -54,41 +54,61 @@ public class Gargantuint {
     }
 
     public Boolean isGreaterThan(Gargantuint other) {
-        if (this.equals(other)) {
+        //System.out.println(this.toString() + " is this");
+        //System.out.println(other.toString() + " is other");
+        if (this.digits == other.digits) {
             return false;
-        } else if (other.isNegative() && !this.isNegative()) {
+        }
+        if (other.isNegative() && !this.isNegative()) {
             return true;
-        } else if (!other.isNegative() && this.isNegative()) {
+        } 
+        if (!other.isNegative() && this.isNegative()) {
             return false;
-        } else if (other.isNegative() && this.isNegative()) {
+        }
+
+        if (!other.isNegative() && !this.isNegative()) {
             if (this.digits.length > other.digits.length) {
-                return false;
-            } else if (this.digits.length < other.digits.length) {
                 return true;
-            } else {
-                for (int i = 0; i < this.digits.length; i++) {
-                    if (this.digits[i] < other.digits[i]) {
-                        return true;
-                    } else if (this.digits[i] > other.digits[i]) {
-                        return false;
-                    }
-                }
+            } 
+
+            if (this.digits.length < other.digits.length) {
+                return false;
             }
-        } else if (!other.isNegative() && !this.isNegative()) {
+        }
+
+        if (other.isNegative() && this.isNegative()) {
             if (this.digits.length > other.digits.length) {
-                return true;
-            } else if (this.digits.length < other.digits.length) {
                 return false;
-            } else {
+            } 
+
+            if (this.digits.length < other.digits.length) {
+                return true;
+            }
+
+            if (this.digits.length == other.digits.length) {
                 for (int i = 0; i < this.digits.length; i++) {
                     if (this.digits[i] > other.digits[i]) {
-                        return true;
-                    } else if (this.digits[i] < other.digits[i]) {
                         return false;
+                    } 
+                    if (this.digits[i] < other.digits[i]) {
+                        return true;
                     }
                 }
             }
         }
+
+
+        for (int i = 0; i < this.digits.length; i++) {
+            if (this.digits[i] > other.digits[i]) {
+                //System.out.println(this.digits[i] + " is greater than " + other.digits[i]);
+                return true;
+            } 
+            if (this.digits[i] < other.digits[i]) {
+                //System.out.println(this.digits[i] + " is less than " + other.digits[i]);
+                return false;
+            }
+        }
+        
         return false;
     }
 
@@ -100,6 +120,20 @@ public class Gargantuint {
         } else {
             return true;
         }
+    }
+
+    private byte[] addByteArray(byte[] larger, byte[] smaller) {
+        byte[] result = new byte[larger.length + 1];
+        result[larger.length] = 0;
+        for (int i = 0; i < smaller.length; i ++) {
+            result[i] += larger[i] + smaller[i];
+            if (result[i] >= 10) {
+                result[i] -= 10;
+                result[i + 1] = 1;
+            }
+        }
+
+        return result;
     }
 
     public Gargantuint minus(Gargantuint subtrahend) {
