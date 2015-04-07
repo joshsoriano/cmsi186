@@ -136,6 +136,14 @@ public class Gargantuint {
         return result;
     }
 
+    private String arrayToString(byte[] digits) {
+        String s = "";
+        for (int i = digits.length - 1; i >= 0; i--) {
+            s += digits[i];
+        }
+        return s;
+    }
+    
     public Gargantuint minus(Gargantuint subtrahend) {
         Gargantuint result = new Gargantuint("1");
         return result;
