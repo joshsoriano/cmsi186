@@ -163,8 +163,32 @@ public class Gargantuint {
     }
 
     public Gargantuint minus(Gargantuint subtrahend) {
-        Gargantuint result = new Gargantuint("1");
-        return result;
+        if(!this.isNegative && subtrahend.isNegative) {
+            Gargantuint abs = new Gargantuint(subtrahend.toString().substring(1));
+            return this.plus(abs);
+        } else if (this.isNegative && subtrahend.isNegative) {
+            Gargantuint abs = new Gargantuint(subtrahend.toString().substring(1));
+            if (this.isGreaterThan(subtrahend)) {
+                return new Gargantuint(arrayToString(this.subtractByteArray(subtrahend.digits, this.digits)));
+            } else if (this.isLessThan(subtrahend)) {
+                return new Gargantuint("-" + arrayToString(this.subtractByteArray(this.digits, subtrahend.digits)));
+            } else {
+                return new Gargantuint("0");
+            }
+        }
+
+        String result = "";
+        if (this.isGreaterThan(subtrahend)) {
+            result = arrayToString(subtractByteArray(this.digits, subtrahend.digits));
+        } else {
+            result = arrayToString(subtractByteArray(subtrahend.digits, this.digits));
+        }
+
+        if (isNegative) {
+            result = "-" + result;
+        }
+
+        return new Gargantuint(result);
     }
 
     public Gargantuint plus(Gargantuint addend) {
@@ -188,6 +212,5 @@ public class Gargantuint {
         return result;
     }
 }
-
 
 
