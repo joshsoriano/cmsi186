@@ -50,39 +50,29 @@ public class Gargantuint {
 
 
     public Boolean equals(Gargantuint other) {
-        if (other.isNegative() && !this.isNegative()) {
-            return false;
-        } else if (!other.isNegative() && this.isNegative()) {
-            return false;
-        }
-        if (this.digits.length == other.digits.length) {
-            for (int i = 0; i < this.digits.length; i++) {
-                if (this.digits[i] < other.digits[i]) {
-                    return false;
-                } else if (other.digits[i] < this.digits[i]) {
-                    return false;
-                }
-            }
-        } else {
-            return false;
-        }
-        return true;
+        return (this.toString().equals(other.toString()));
     }
 
     public Boolean isGreaterThan(Gargantuint other) {
-        if (this.digits == other.digits) {
+        if (this.equals(other)) {
             return false;
-        }
-
-        if (other.isNegative() && !this.isNegative()) {
-            return false;
-        } else if (!other.isNegative() && this.isNegative()) {
+        } else if (other.isNegative() && !this.isNegative()) {
             return true;
+        } else if (!other.isNegative() && this.isNegative()) {
+            return false;
         } else if (other.isNegative() && this.isNegative()) {
             if (this.digits.length > other.digits.length) {
                 return false;
-            } else {
+            } else if (this.digits.length < other.digits.length) {
                 return true;
+            } else {
+                for (int i = 0; i < this.digits.length; i++) {
+                    if (this.digits[i] < other.digits[i]) {
+                        return true;
+                    } else if (this.digits[i] > other.digits[i]) {
+                        return false;
+                    }
+                }
             }
         } else if (!other.isNegative() && !this.isNegative()) {
             if (this.digits.length > other.digits.length) {
