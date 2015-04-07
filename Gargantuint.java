@@ -248,8 +248,41 @@ public class Gargantuint {
     }
 
     public Gargantuint times(Gargantuint factor) {
-        Gargantuint result = new Gargantuint("1");
-        return result;
+        String result = "";
+        byte[] longer;
+        byte[] shorter;
+
+        if (this.digits.length > factor.digits.length) {
+            longer = this.digits;
+            shorter = factor.digits;
+        } else {
+            longer = factor.digits;
+            shorter = this.digits;
+        }
+
+        byte[] sumArray = new byte[shorter.length + longer.length];
+        sumArray = fillWithZeros(sumArray);
+
+        for (int i = 0; i < shorter.length; i++) {
+            byte[] multipliedValue = new byte[longer.length + 1];
+            multipliedValue = fillWithZeros(multipliedValue);
+            for (int j = 0; j < shorter[i]; j++) {
+                multipliedValue = addByteArray(multipliedValue, longer);
+            }
+
+            for (int k = 0; k < i; k++) {
+                multipliedValue = addZeroToEnd(multipliedValue);
+            }
+
+            if (multipliedValue.length > sumArray.length) {
+                sumArray = addByteArray(multipliedValue, sumArray);
+            } else {
+                sumArray = addByteArray(sumArray, multipliedValue);
+            }
+        }
+
+        result = ((this.isNegative && !factor.isNegative) || (!this.isNegative && factor.isNegative)) ? "-" + arrayToString(sumArray) : arrayToString(sumArray);
+        return new Gargantuint(result); 
     }
 
     public Gargantuint div(Gargantuint divisor) {
