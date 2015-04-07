@@ -14,10 +14,8 @@ public class GargantuintTestHarness {
         test_isGreaterThan();
         test_isLessThan();
         test_Addition();
-        
-        // You should implement:
-        //   test_Subtraction
-        //   test_Multiplication
+        test_Subtraction();
+        test_Multiplication();
         //   test_IntegerDivision
         //   test_Modulo
 
@@ -161,7 +159,7 @@ public class GargantuintTestHarness {
         } catch (Exception e) {
             displaySuccessIfTrue(false);
         }
-
+        
         try {
             displaySuccessIfTrue(new Gargantuint("5001").isGreaterThan(new Gargantuint("28")));
         } catch (Exception e) {
@@ -495,7 +493,279 @@ public class GargantuintTestHarness {
         } catch(Exception e) {
             displaySuccessIfTrue(false);
         }
-
     }
 
+    public static void test_Subtraction() {
+        System.out.println("Testing minus...");
+
+        Gargantuint minuend = new Gargantuint("552");
+        Gargantuint subtrahend = new Gargantuint("440");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("112").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);   
+        }
+
+        minuend = new Gargantuint("1123");
+        subtrahend = new Gargantuint("155");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("968").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);     
+        }
+
+        minuend = new Gargantuint("1000001");
+        subtrahend = new Gargantuint("2");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("999999").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);     
+        }
+
+        minuend = new Gargantuint("94");
+        subtrahend = new Gargantuint("94");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("0").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);     
+        }
+
+        minuend = new Gargantuint("28");
+        subtrahend = new Gargantuint("99");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-71").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);     
+        }
+
+        minuend = new Gargantuint("7632");
+        subtrahend = new Gargantuint("11111");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-3479").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);     
+        }
+
+        minuend = new Gargantuint("0");
+        subtrahend = new Gargantuint("10099");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-10099").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);      
+        }
+
+
+        minuend = new Gargantuint("162");
+        subtrahend = new Gargantuint("-34");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("196").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);      
+        }
+
+        minuend = new Gargantuint("0");
+        subtrahend = new Gargantuint("-722");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("722").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+            
+        }
+
+        minuend = new Gargantuint("-12");
+        subtrahend = new Gargantuint("-24");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("12").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);       
+        }
+
+        minuend = new Gargantuint("-99887743");
+        subtrahend = new Gargantuint("-99887743");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("0").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);     
+        }
+
+        minuend = new Gargantuint("-761");
+        subtrahend = new Gargantuint("-82");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-679").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);    
+        }
+
+        minuend = new Gargantuint("-81");
+        subtrahend = new Gargantuint("-77");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-4").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);    
+        }
+
+        minuend = new Gargantuint("-82");
+        subtrahend = new Gargantuint("-200");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("118").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);       
+        }
+
+        minuend = new Gargantuint("-11");
+        subtrahend = new Gargantuint("50");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-61").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);       
+        }
+
+        minuend = new Gargantuint("-8");
+        subtrahend = new Gargantuint("313");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-321").equals(minuend.minus(subtrahend)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);     
+        }
+    }
+
+    public static void test_Multiplication() {
+        System.out.println("Testing times...");
+        int testNumber = 1;
+
+        Gargantuint multiplicand = new Gargantuint("21");
+        Gargantuint multiplier = new Gargantuint("4");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("84").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);       
+        }
+
+        multiplicand = new Gargantuint("38");
+        multiplier = new Gargantuint("5");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("190").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false); 
+        }
+
+        multiplicand = new Gargantuint("454");
+        multiplier = new Gargantuint("102349");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("46466446").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        multiplicand = new Gargantuint("-20");
+        multiplier = new Gargantuint("988");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-19760").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);   
+        }
+
+        multiplicand = new Gargantuint("-10099");
+        multiplier = new Gargantuint("-2");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("20198").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        multiplicand = new Gargantuint("435346546546547391231091910099");
+        multiplier = new Gargantuint("0");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("0").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+
+        multiplicand = new Gargantuint("0");
+        multiplier = new Gargantuint("-50000000000001");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("0").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);    
+        }
+
+        multiplicand = new Gargantuint("202");
+        multiplier = new Gargantuint("651");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("131502").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);    
+        }
+
+        multiplicand = new Gargantuint("2010");
+        multiplier = new Gargantuint("7000000000");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("14070000000000").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);    
+        }
+
+        multiplicand = new Gargantuint("-1");
+        multiplier = new Gargantuint("1984739146319471042831093212343141");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-1984739146319471042831093212343141")
+                    .equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);   
+        }
+
+        multiplicand = new Gargantuint("-98274090");
+        multiplier = new Gargantuint("-223090000");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("21923966738100000")
+                    .equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);      
+        }
+
+        multiplicand = new Gargantuint("-2");
+        multiplier = new Gargantuint("4");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("-8").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);            
+        }
+
+        multiplicand = new Gargantuint("9999");
+        multiplier = new Gargantuint("99");
+
+        try {
+            displaySuccessIfTrue(new Gargantuint("989901").equals(multiplicand.times(multiplier)));
+        } catch (Exception e) {
+            displaySuccessIfTrue(false);
+        }
+    }
 }
