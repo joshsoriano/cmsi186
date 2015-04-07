@@ -122,15 +122,33 @@ public class Gargantuint {
         }
     }
 
-    private byte[] addByteArray(byte[] larger, byte[] smaller) {
-        byte[] result = new byte[larger.length + 1];
-        result[larger.length] = 0;
-        for (int i = 0; i < smaller.length; i ++) {
-            result[i] += larger[i] + smaller[i];
+    private byte[] addByteArray(byte[] longer, byte[] shorter) {
+        byte[] result = new byte[longer.length + 1];
+        result[longer.length] = 0;
+        for (int i = 0; i < longer.length; i ++) {
+            result[i] += longer[i] + shorter[i];
             if (result[i] >= 10) {
                 result[i] -= 10;
                 result[i + 1] = 1;
             }
+        }
+
+        return result;
+    }
+
+    private byte[] subtractByteArray(byte[] longer, byte[] shorter) {
+        byte[] result = new byte[longer.length + 1];
+        result[longer.length] = 0;
+        for (int i = 0; i < shorter.length; i++) {
+            result[i] += longer[i] - shorter[i];
+            if (result[i] < 0) {
+                longer[i + 1] -= 1;
+                longer[i] += 10;
+                result[i] += longer[i] - shorter[i];
+            }
+        }
+        for (int i = shorter.length; i < longer.length; i++) {
+            result[i] += longer[i];
         }
 
         return result;
@@ -143,7 +161,7 @@ public class Gargantuint {
         }
         return s;
     }
-    
+
     public Gargantuint minus(Gargantuint subtrahend) {
         Gargantuint result = new Gargantuint("1");
         return result;
@@ -153,6 +171,7 @@ public class Gargantuint {
         Gargantuint result = new Gargantuint("1");
         return result;
     }
+
 
     public Gargantuint mod(Gargantuint divisor) {
         Gargantuint result = new Gargantuint("1");
