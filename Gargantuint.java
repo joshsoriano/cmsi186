@@ -231,6 +231,22 @@ public class Gargantuint {
         return result;
     }
 
+    private byte[] fillWithZeros(byte[] multipliedValue) {
+        for (int i = 0; i < multipliedValue.length; i++) {
+            multipliedValue[i] = 0;
+        }
+        return multipliedValue;
+    }
+
+    private byte[] addZeroToEnd(byte[] multipliedValue) {
+        byte[] result = new byte[multipliedValue.length + 1];
+        for(int i = 1; i < result.length; i++) {
+            result[i] = multipliedValue[i - 1];
+        }
+        result[0] = 0;
+        return result;
+    }
+
     public Gargantuint times(Gargantuint factor) {
         Gargantuint result = new Gargantuint("1");
         return result;
