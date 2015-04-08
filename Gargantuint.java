@@ -4,7 +4,7 @@ public class Gargantuint {
     private boolean isNegative;
 
     public Gargantuint() {
-        this ("0");
+        this("0");
     }
 
     public Gargantuint(String number) {
@@ -54,14 +54,14 @@ public class Gargantuint {
     }
 
     public Boolean isGreaterThan(Gargantuint other) {
-        //System.out.println(this.toString() + " is this");
-        //System.out.println(other.toString() + " is other");
-        if (this.digits == other.digits) {
+        if (this.equals(other)) {
             return false;
         }
+
         if (other.isNegative() && !this.isNegative()) {
             return true;
         } 
+
         if (!other.isNegative() && this.isNegative()) {
             return false;
         }
@@ -113,20 +113,21 @@ public class Gargantuint {
     }
 
     public Boolean isLessThan(Gargantuint other) {
-        if (this.isGreaterThan(other)) {
-            return false;
-        } else if (this.equals(other)) {
-            return false;
-        } else {
-            return true;
-        }
+        return (!this.isGreaterThan(other) && !this.equals(other));
     }
 
     private byte[] addByteArray(byte[] longer, byte[] shorter) {
         byte[] result = new byte[longer.length + 1];
+        byte[] temp = new byte[longer.length];
+
+        for (int j = 0; j < shorter.length; j++) {
+            temp[j] = shorter[j];
+        }
+
         result[longer.length] = 0;
-        for (int i = 0; i < longer.length; i ++) {
-            result[i] += longer[i] + shorter[i];
+
+        for (int i = 0; i < longer.length; i++) {
+            result[i] += longer[i] + temp[i];
             if (result[i] >= 10) {
                 result[i] -= 10;
                 result[i + 1] = 1;
