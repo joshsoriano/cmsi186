@@ -228,8 +228,7 @@ public class Gargantuint {
 
 
     public Gargantuint mod(Gargantuint divisor) {
-        Gargantuint result = new Gargantuint("1");
-        return result;
+        throw new UnsupportedOperationException("Invalid operation.");
     }
 
     private byte[] fillWithZeros(byte[] multipliedValue) {
@@ -287,8 +286,7 @@ public class Gargantuint {
     }
 
     public Gargantuint div(Gargantuint divisor) {
-        Gargantuint result = new Gargantuint("1");
-        return result;
+        throw new UnsupportedOperationException("Invalid operation.");
     }
 }
 
