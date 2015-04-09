@@ -1,6 +1,6 @@
 public class PiEstimator {
 
-    public static boolean [] throwDarts (int darts) { 
+    public static boolean[] throwDarts (int darts) { 
         boolean [] hits = new boolean[darts];
         for(int i = 0; i < darts; i++){
         double x = Math.random() * 2;
@@ -14,5 +14,16 @@ public class PiEstimator {
        }
        return hits;
     }
-    
+
+    public static int estimate(boolean[] array, int darts) {
+        int hitsCounter = 0;
+        int percentage;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == true) {
+                hitsCounter++;
+            }
+        }
+        percentage = (hitsCounter / darts);
+        return (4 * percentage);
+    }
 }
