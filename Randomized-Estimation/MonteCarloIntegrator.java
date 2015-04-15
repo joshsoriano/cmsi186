@@ -1,13 +1,13 @@
 public class MonteCarloIntegrator {
     private double lowerX;
     private double upperX;
-    private static double lowerY = 0.0;
-    private static double upperY = 0.0;
+    private double lowerY = 0.0;
+    private double upperY = 0.0;
     private static long darts;
     private Polynomial function;
     private int upperHits = 0;
     private int lowerHits = 0;
-    private static double estimate;
+    private double estimate;
     private static double lowerBound;
     private static double upperBound;
 
@@ -31,6 +31,8 @@ public class MonteCarloIntegrator {
         }
         lowerY = lowerY * 1.1;
         upperY = upperY * 1.1;
+        System.out.println("Minimum in range: " + lowerY);
+        System.out.println("Maximum in range: " + upperY);
         System.out.println("Start");
         for (int i = 0; i < darts; i++) {
             double x = (upperX - lowerX) * Math.random() + lowerX;
@@ -46,6 +48,8 @@ public class MonteCarloIntegrator {
             System.out.println(x + " " + y + " " + (hit ? "in" : "out"));
         }
         estimate = (Math.abs(lowerY - upperY) * Math.abs(lowerX - upperX)) * (((double)(upperHits-lowerHits)/((double)darts)));
+        System.out.println("end");
+        System.out.println("Estimate: " + estimate);
         return estimate;
     }
 
@@ -93,11 +97,7 @@ public class MonteCarloIntegrator {
             } 
             Polynomial polynomial = new Polynomial(coefficients);
             MonteCarloIntegrator test = new MonteCarloIntegrator(polynomial);
-            System.out.println("Minimum in range: " + lowerY);
-            System.out.println("Maximum in range: " + upperY);
             test.integrate(lowerBound, upperBound, darts);
-            System.out.println("end");
-            System.out.println("Estimate: " + estimate);
 
         } else if (!(args[0].equals("poly"))) {
             System.out.println("First argument is not a supported type of function.");
