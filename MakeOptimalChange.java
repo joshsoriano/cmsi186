@@ -59,6 +59,14 @@ public class MakeOptimalChange {
     }
 
     public static Tally makeOptimalChange(int[] denominations, int amount) {
+        
+        Tally[][] tallyTable = new Tally[denominations.length][amount + 1];
+
+        for (int i = 0; i < denominations.length; i++) {
+            tallyTable[i][0] = new Tally(denominations.length); // <0, 0, 0, 0>
+            System.out.println(tallyTable[i][0]);
+        }
+
         return Tally.IMPOSSIBLE;
     }
 
