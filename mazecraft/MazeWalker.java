@@ -69,16 +69,55 @@ public class MazeWalker {
      * not that destination has been reached, or whether that destination is
      * impossible to reach.
      */
+
+    public WalkerState backUp(int currentX, int currentY) {
+        if (path[pathIndex] == WalkerState.MOVE_UP) {
+            pathIndex--;
+            return WalkerState.MOVE_DOWN;
+        } else if (path[pathIndex] == WalkerState.MOVE_DOWN) {
+            pathIndex--;
+            return WalkerState.MOVE_UP;
+        } else if (path[pathIndex] == WalkerState.MOVE_RIGHT) {
+            pathIndex--;
+            return WalkerState.MOVE_LEFT;
+        } else if (path[pathIndex] == WalkerState.MOVE_LEFT) {
+            pathIndex--;
+            return WalkerState.MOVE_RIGHT;
+        }
+        return WalkerState.IMPOSSIBLE_TO_GET_THERE;
+    }
+
     public WalkerState areWeThereYet(int currentX, int currentY) {
-        // Implement me!
+        beenThere[currentY][currentX] = true;
 
         // 1. AM I THERE YET? If the current coordinates match the pig's location
+        if ((currentY == destinationY) && (currentX == destinationX)) {
+            return WalkerState.THERE_ALREADY;
+        }
         // 2. Not there? Check if you can go up, down, left, or right
-        // 3. If there is no 'open' square that I haven't gone to, then back up
-        // 4. If back at the beginning --> declare impossible
-
-        //TIPS: METHOD -> FIND OPEN SQUARE -- BACK UP
-        return WalkerState.IMPOSSIBLE_TO_GET_THERE;
+        if (maze.getLocation(currentX, currentY).getAbove().isOpen() && !beenThere[currentY - 1][currentX]) {
+            pathIndex++;
+            path[pathIndex] = WalkerState.MOVE_UP;
+            return WalkerState.MOVE_UP;
+        } else if (maze.getLocation(currentX, currentY).getBelow().isOpen() && !beenThere[currentY + 1][currentX]) {
+            pathIndex++;
+            path[pathIndex] = WalkerState.MOVE_DOWN;
+            return WalkerState.MOVE_DOWN;
+        } else if (maze.getLocation(currentX, currentY).getRight().isOpen() && !beenThere[currentY][currentX + 1]) {
+            pathIndex++;
+            path[pathIndex] = WalkerState.MOVE_RIGHT;
+            return WalkerState.MOVE_RIGHT;
+        } else if (maze.getLocation(currentX, currentY).getLeft().isOpen() && !beenThere[currentY][currentX - 1]) {
+            pathIndex++;
+            path[pathIndex] = WalkerState.MOVE_LEFT;    
+            return WalkerState.MOVE_LEFT;
+        } 
+        // 3. If back at the beginning --> declare impossible
+        if (pathIndex == -1) {
+            return WalkerState.IMPOSSIBLE_TO_GET_THERE;
+        }
+        // 4. If there is no 'open' square that I haven't gone to, then back up
+        return backUp(currentX, currentY);
     }
 
     /**
